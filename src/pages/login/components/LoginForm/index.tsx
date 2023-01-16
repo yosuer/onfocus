@@ -48,6 +48,9 @@ const LoginForm = () => {
               <h2>Super App</h2>
             </Grid>
             <Grid>
+              <span>(email: test@test.com, password: 123456)</span>
+            </Grid>
+            <Grid>
               <Field
                 component={TextField}
                 name="email"
@@ -66,6 +69,7 @@ const LoginForm = () => {
             {loginError && <Alert severity="error">{loginError}</Alert>}
             <Grid marginTop={6}>
               <Button
+                type="submit"
                 variant="contained"
                 onClick={submitForm}
                 disabled={isSubmitting}
