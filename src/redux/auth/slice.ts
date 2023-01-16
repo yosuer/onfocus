@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
-import { authLogin } from "./thunk";
+import { authLogin, authLogout } from "./thunk";
 
 interface AuthState {
   token: string;
@@ -8,7 +8,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  token: "",
+  token: localStorage.getItem("token") || "",
   error: null,
 };
 
@@ -27,9 +27,14 @@ export const authSlice = createSlice({
     builder.addCase(authLogin.pending, (state) => {
       state.error = null;
     });
+    builder.addCase(authLogout.fulfilled, (state) => {
+      state.token = "";
+    });
   },
 });
 
-export const selectError = (state: RootState) => state.auth.error;
+export const selectAuthError = (state: RootState) => state.auth.error;
+
+export const selectAuthToken = (state: RootState) => state.auth.token;
 
 export default authSlice.reducer;

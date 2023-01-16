@@ -9,7 +9,7 @@ import "./index.css";
 import { LoginProps } from "../../../../types";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { authLogin } from "../../../../redux/auth/thunk";
-import { selectError } from "../../../../redux/auth/slice";
+import { selectAuthError } from "../../../../redux/auth/slice";
 
 const schema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -18,7 +18,7 @@ const schema = Yup.object().shape({
 
 const LoginForm = () => {
   const dispatch = useAppDispatch();
-  const loginError = useAppSelector(selectError);
+  const loginError = useAppSelector(selectAuthError);
   const navigate = useNavigate();
 
   const handleSubmit = async (values: LoginProps) => {

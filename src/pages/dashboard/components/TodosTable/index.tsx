@@ -25,7 +25,7 @@ const TodosTable = () => {
   const { items, total } = useAppSelector(selectItemsPage);
   const todoPagination = useAppSelector(selectPagination);
 
-  const handleChangePage = (event: unknown, newPage: number) => {
+  const handleChangePage = (_: unknown, newPage: number) => {
     dispatch(changePage(newPage));
   };
 

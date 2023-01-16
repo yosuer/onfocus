@@ -19,11 +19,16 @@ export const authLogin = createAsyncThunk<
   // Login wiht any backend endpoint:
   // const response = await fetch('https://authentication-server.com');
   // const { token } = await response.json();
-  await timeout(3000);
+  await timeout(2000);
   if (email === "test@test.com" && password === "123456") {
     const token = "any-jwt-token";
+    localStorage.setItem("token", token);
 
     return token;
   }
   return thunkApi.rejectWithValue({ errorMessage: "Authentication error" });
+});
+
+export const authLogout = createAsyncThunk("auth/logout", async () => {
+  localStorage.removeItem("token");
 });
